@@ -44,10 +44,11 @@ public class MainActivity extends AppCompatActivity {
 
         //Підписуємося на зміни у свідченнях датчика
         if (hasPermission(Manifest.permission.ACCESS_FINE_LOCATION)) {
-            Toast.makeText(this, "Requesting updates", Toast.LENGTH_SHORT);
-            locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locListener);
-        } else {
             requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        }
+
+        if (hasPermission(Manifest.permission.ACCESS_FINE_LOCATION)) {
+            locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locListener);
         }
 
         // Якщо gps включений, то ..., інакше вивести "GPS is not turned on.".
